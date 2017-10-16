@@ -122,7 +122,7 @@ $(document).ready(function() {
 
 			}
 			else if(trivia.roundEnd === true) {
-				trivia.time = 1;
+				trivia.time = 8;
 			}
 			trivia.intervalId = setInterval(trivia.timeCountDown, 1000);
 		},
@@ -191,7 +191,7 @@ $(document).ready(function() {
 			if(trivia.currentQuestion === trivia.quiz.length) {
 				trivia.gameEnded = true;
 			};
-			if(trivia.currentQuestion === 5){
+			if(trivia.currentQuestion === 5) {
 				var img = $("<img>");
 				img.addClass("imageResize");
 				img.attr("src", trivia.currentImage);
@@ -216,7 +216,7 @@ $(document).ready(function() {
 		},
 
 		playWrongSound: function() {
-			if(trivia.mute === false){
+			if(trivia.mute === false) {
 				document.getElementById("wrong").src = trivia.sounds[trivia.randomSound];
 				document.getElementById("wrong").play();
 				trivia.randomSound++;
@@ -226,13 +226,13 @@ $(document).ready(function() {
 			}
 		},
 
-		playCorrectSound: function(){
+		playCorrectSound: function() {
 			if(trivia.mute === false){
 				document.getElementById("correct").play();
 			}
 		},
 
-		setMusic: function(){
+		setMusic: function() {
 			var music = new Audio;
 			music.src = trivia.sounds[3];
 			music.loop = true;
@@ -251,20 +251,20 @@ $(document).ready(function() {
 			$("#soundEffect").append(correctSound);
 		},
 
-		muteMusic: function(){
+		muteMusic: function() {
 			if(trivia.mute === false) {
 				document.getElementById("music").pause();
 				trivia.mute = true;
 			}
 			else {
 				trivia.mute = false;
-				if(trivia.startMusic === true){
+				if(trivia.startMusic === true) {
 					document.getElementById("music").play();
 				}
 			};
 		},
 
-		startGameMusic: function(){
+		startGameMusic: function() {
 			if(trivia.mute === false){
 				document.getElementById("music").play();
 			}
@@ -279,19 +279,19 @@ $(document).ready(function() {
 			img.addClass("imageResize");
 			img.attr("src", trivia.currentImage);
 			
-			if(yourGuess === "correct"){
+			if(yourGuess === "correct") {
 				$(endRoundTextDiv).html("Correct<br><br>" + trivia.currentFunFact + "<br><br>");
 				$(endRoundTextDiv).append(img);
 				$(endRoundTextDiv).hide().appendTo("#endRoundText").fadeIn(1000);
 			}
-			else if(yourGuess === "incorrect"){
+			else if(yourGuess === "incorrect") {
 				$(endRoundTextDiv).html("Nope<br>The correct answer is " + trivia.currentAnswer + "<br><br>" + trivia.currentFunFact
 					+ "<br><br>");
 				$(endRoundTextDiv).append(img);
 				$(endRoundTextDiv).hide().appendTo("#endRoundText").fadeIn(1000);
 				
 			}
-			else{
+			else {
 				$(endRoundTextDiv).html("Ran out of time!<br>The correct answer is " + 
 					trivia.currentAnswer + "<br><br>" + trivia.currentFunFact + "<br><br>");
 				$(endRoundTextDiv).append(img);
@@ -300,7 +300,7 @@ $(document).ready(function() {
 			};
 		},
 
-		endGameScreen: function(){
+		endGameScreen: function() {
 			$("#timer").empty();
 			$("#question").empty();
 			$("#answers").empty();

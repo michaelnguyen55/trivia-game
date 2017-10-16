@@ -5,7 +5,6 @@ body, html {
 }
 
 body {
-	/*background-color: #769fe2;*/
 	background-color: #FFDA4B;
 	background-image: url("../images/catcoffee.jpg");
 	background-repeat: no-repeat;
@@ -40,7 +39,6 @@ h1 {
 	padding: 20px 0px;
 	background-color: #af1308;
 	border-radius: 50px;
-	/*box-shadow: 3px 3px #C0C0C0;*/
 	max-width: 70%;
 	margin: auto;
 	margin-bottom: 5px;
@@ -86,7 +84,7 @@ h1 {
 	background-color: #e11308;
 }
 
-#restartButton{
+#restartButton {
 	display: none;
 }
 
