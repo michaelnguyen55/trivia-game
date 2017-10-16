@@ -1,13 +1,19 @@
 body, html {
 	height: 100%;
-	margin: 0;
+	margin: 0px;
+	overflow: auto;
 }
 
 body {
-	background-color: #769fe2;
+	/*background-color: #769fe2;*/
+	background-color: #FFDA4B;
+	background-image: url("../images/catcoffee.jpg");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	background-size: 380px 580px;
 }
 
-h1{
+h1 {
 	font-size: 50px;
 }
 
@@ -16,48 +22,78 @@ h1{
 	text-align: center;
 	background-color: white;
 	width: 700px;
-	height: 80%;
+	height: 550px;
 	margin: auto;
-	margin-top: 40px;
+	margin-top: 30px;
 	padding-top: 15px;
-	box-shadow: 10px 10px #B8B8B8;
+	box-shadow: 10px 10px #dbbb3f;
 }
 
-#content{
+#content {
+	position: relative;
 	font-size: 24px;
 }
 
-.answerBox{
+.answerBox {
+	font-size: 18px;
 	color: white;
 	padding: 20px 0px;
-	background-color: #e8443c;
-	border: 0px solid #e8443c;
+	background-color: #af1308;
 	border-radius: 50px;
 	/*box-shadow: 3px 3px #C0C0C0;*/
-	max-width: 50%;
+	max-width: 70%;
 	margin: auto;
 	margin-bottom: 5px;
 }
 
 .answerBox:hover {
-	background-color: #f76059;
+	background-color: #e11308;
 	cursor: pointer;
 }
 
-#startButton, #restartButton{
+.imageResize {
+	max-width: 400px;
+	max-height: 200px;
+}
+
+#muteButton {
+	position: absolute;
+	left: 5px;
+	top: 0;
+	font-size: 15px;
+	color: white;
+	border: 0px solid #af1308;
+	background-color: #af1308;
+	cursor: pointer;
+	box-shadow: 2px 2px #C0C0C0;
+}
+
+#startButton, #restartButton {
 	font-size: 50px;
 	color: white;
-	border: 0px solid;
-	background-color: #e8443c;
+	border: 0px solid #af1308;
+	background-color: #af1308;
 	padding: 25px 100px;
 	cursor: pointer;
 	box-shadow: 4px 4px #C0C0C0;
 }
 
-#startButton:hover, #restartButton:hover {
-	background-color: #f76059;
+#startButton:focus, #restartButton:focus, #muteButton:focus {
+	outline: 0;
+}
+
+#startButton:hover, #restartButton:hover, #muteButton:hover {
+	background-color: #e11308;
 }
 
 #restartButton{
 	display: none;
+}
+
+#startButton, #restartButton, #muteButton, .answerBox {
+	-webkit-transition: background-color 0.22s ease-in-out;
+	-moz-transition: background-color 0.22s ease-in-out;
+	-ms-transition: background-color 0.22s ease-in-out;
+	-o-transition: background-color 0.22s ease-in-out;
+	transition: background-color 0.22s ease-in-out;
 }
