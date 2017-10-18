@@ -36,17 +36,23 @@ h1 {
 .answerBox {
 	font-size: 18px;
 	color: white;
-	padding: 20px 0px;
+	padding: 12px 0px;
 	background-color: #af1308;
 	border-radius: 50px;
 	max-width: 70%;
 	margin: auto;
-	margin-bottom: 5px;
+	margin-bottom: 8px;
+	box-shadow: 0 4px #999;
 }
 
 .answerBox:hover {
 	background-color: #e11308;
 	cursor: pointer;
+}
+
+.answerBox:active {
+	transform: translateY(2px);
+	box-shadow: 0 2px #666;
 }
 
 .imageResize {
@@ -82,6 +88,20 @@ h1 {
 
 #startButton:hover, #restartButton:hover, #muteButton:hover {
 	background-color: #e11308;
+}
+
+#startButton:active, #restartButton:active, #muteButton:active, .answerBox:active {
+	background-color: #7d1308;
+}
+
+#startButton:active, #restartButton:active{
+	transform: translateY(2px);
+	box-shadow: 2px 2px #C0C0C0;
+}
+
+#muteButton:active{
+	transform: translateY(2px);
+	box-shadow: 1px 1px #C0C0C0;
 }
 
 #restartButton {

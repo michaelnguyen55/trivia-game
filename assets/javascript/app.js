@@ -54,6 +54,17 @@ $(document).ready(function() {
 			image: "assets/images/monk.jpg"
 		},
 		{
+			question: "5.  Kopi Luwak, the world's most expensive coffee (up to $600 per pound) is:",
+			answers: ["A: Processed during a full moon", 
+			"B: Brewed only with solid gold pots", 
+			"C: Made from coffee beans eaten and then excreted by a Sumatran wild cat", 
+			"D: Grown at a higher altitude than any other bean"],
+			correctAnswer: "C: Made from coffee beans eaten and then excreted by a Sumatran wild cat",
+			funFact: "The asian palm civet improves coffee through selection, digestion, and fermentation.",
+			image: "assets/images/kopi.jpg"
+
+		},
+		{
 			question: "Coffee Break",
 			answers:"",
 			corectAnswer:"",
@@ -61,15 +72,7 @@ $(document).ready(function() {
 			image: "assets/images/coffeebreak.gif"
 		},
 		{
-			question: "5. What's the origin for the word jazz?",
-			answers: ["A: French jaser, meaning to chat", "B: Baseball", "C: Ragtime spirit", "D: Enthusiasm", "E: Sex term ;)"],
-			correctAnswer: "E: Sex term ;)",
-			funFact: "Jazz was a slang and noun that derived from jism. As a verb, it meant to 'make love'",
-			image: "assets/images/jazz.jpg"
-
-		},
-		{
-			question: "6. Cats purr when in pain?",
+			question: "6. Do cats purr when in pain?",
 			answers: ["A: True", "B: False"],
 			correctAnswer: "A: True",
 			funFact: "Cats will purr when in pain to release endorphins. Purrs' frequencies also promote bone healing and ease muscle pain.",
@@ -110,11 +113,11 @@ $(document).ready(function() {
 		startTime: function() {
 			if(trivia.roundEnd === false) {
 				$("#timer").empty();
-				if(trivia.currentQuestion === 5) {
-					trivia.time = 8;
+				if(trivia.currentQuestion === 6) {
+					trivia.time = 6;
 				}
 				else{
-					trivia.time = 30;
+					trivia.time = 20;
 					var timerDiv = $("<div>");
 					$(timerDiv).append("Time Remaining: " + trivia.time + " Seconds" + "<br><br>");
 					$(timerDiv).hide().appendTo("#timer").fadeIn(1000);
@@ -122,13 +125,13 @@ $(document).ready(function() {
 
 			}
 			else if(trivia.roundEnd === true) {
-				trivia.time = 8;
+				trivia.time = 7;
 			}
 			trivia.intervalId = setInterval(trivia.timeCountDown, 1000);
 		},
 
 		timeCountDown: function() {
-			if(trivia.roundEnd === false && trivia.currentQuestion !== 5) {
+			if(trivia.roundEnd === false && trivia.currentQuestion !== 6) {
 				trivia.time--;
 				$("#timer").html("Time Remaining: " + trivia.time + " Seconds" + "<br><br>");
 				if(trivia.time === 0) {
@@ -151,7 +154,7 @@ $(document).ready(function() {
 					};
 				};
 			}
-			else if(trivia.currentQuestion === 5) {
+			else if(trivia.currentQuestion === 6) {
 				trivia.time--;
 				if(trivia.time === 0) {
 					clearInterval(trivia.intervalId);
@@ -191,7 +194,7 @@ $(document).ready(function() {
 			if(trivia.currentQuestion === trivia.quiz.length) {
 				trivia.gameEnded = true;
 			};
-			if(trivia.currentQuestion === 5) {
+			if(trivia.currentQuestion === 6) {
 				var img = $("<img>");
 				img.addClass("imageResize");
 				img.attr("src", trivia.currentImage);
@@ -220,14 +223,14 @@ $(document).ready(function() {
 				document.getElementById("wrong").src = trivia.sounds[trivia.randomSound];
 				document.getElementById("wrong").play();
 				trivia.randomSound++;
-				if(trivia.randomSound > 2){
+				if(trivia.randomSound > 2) {
 					trivia.randomSound = 1;
 				}
 			}
 		},
 
 		playCorrectSound: function() {
-			if(trivia.mute === false){
+			if(trivia.mute === false) {
 				document.getElementById("correct").play();
 			}
 		},
@@ -265,7 +268,7 @@ $(document).ready(function() {
 		},
 
 		startGameMusic: function() {
-			if(trivia.mute === false){
+			if(trivia.mute === false) {
 				document.getElementById("music").play();
 			}
 			trivia.startMusic = true;
