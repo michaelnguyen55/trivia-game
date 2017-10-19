@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-
+	//Object conatining the game
 	var trivia = {
 		currentQuestion: 0,
 		currentAnswer: "",
@@ -19,6 +19,7 @@ $(document).ready(function() {
 		startMusic: false,
 		randomSound: 1,
 
+		//Array of the quiz questions, answers, facts and images
 		quiz: [
 		{
 			question: "1. Where do coffee beans grow from?",
@@ -110,13 +111,16 @@ $(document).ready(function() {
 		}
 		],
 
+		//For each question, this will start the time at 20 seconds if the question round has not ended
+		//and then call the interval for counting down. If the round has ended, this will set the time for in between questions
 		startTime: function() {
 			if(trivia.roundEnd === false) {
 				$("#timer").empty();
+				//if the current question is 6 (which is for the break in between), set time to 6
 				if(trivia.currentQuestion === 6) {
 					trivia.time = 6;
 				}
-				else{
+				else {
 					trivia.time = 20;
 					var timerDiv = $("<div>");
 					$(timerDiv).append("Time Remaining: " + trivia.time + " Seconds" + "<br><br>");
@@ -124,16 +128,19 @@ $(document).ready(function() {
 				};
 
 			}
+			//If the round has ended, set the amount of time in between each question to 7
 			else if(trivia.roundEnd === true) {
 				trivia.time = 7;
 			}
 			trivia.intervalId = setInterval(trivia.timeCountDown, 1000);
 		},
 
+		//Counts down the time by 1 every second
 		timeCountDown: function() {
 			if(trivia.roundEnd === false && trivia.currentQuestion !== 6) {
 				trivia.time--;
 				$("#timer").html("Time Remaining: " + trivia.time + " Seconds" + "<br><br>");
+				//If the time has run out, then the question will end and move to the round end screen in between questions
 				if(trivia.time === 0) {
 					trivia.numUnanswered++;
 					trivia.stopTime();
@@ -141,6 +148,7 @@ $(document).ready(function() {
 					trivia.playWrongSound();
 				}
 			}
+			//If the question round has already ended, then count down time for in between questions
 			else if(trivia.roundEnd === true) {
 				trivia.time--;
 				if(trivia.time === 0) {
@@ -154,6 +162,7 @@ $(document).ready(function() {
 					};
 				};
 			}
+			//If the question is 6, then count down time and move to next question immediately with no in between time
 			else if(trivia.currentQuestion === 6) {
 				trivia.time--;
 				if(trivia.time === 0) {
@@ -163,12 +172,14 @@ $(document).ready(function() {
 			}
 		},
 
+		//Stops the time from counting down and sets the question to end
 		stopTime: function() {
 			clearInterval(trivia.intervalId);
 			trivia.roundEnd = true;
 			trivia.startTime();
 		},
 
+		//Gets the question and puts in all the properties of the questions
 		getQuestion: function() {
 			$("#question").empty();
 			$("#answers").empty();
@@ -203,6 +214,7 @@ $(document).ready(function() {
 			trivia.startTime();
 		},
 
+		//When clicking an answer, if correct then go to the correct round end screen, if incorrect go to incorrect round end screen
 		clickAnswer: function(answerClicked) {
 			var yourGuess = $(answerClicked).attr("data-correctAnswer");
 			if(yourGuess === trivia.currentAnswer) {
@@ -218,6 +230,7 @@ $(document).ready(function() {
 			trivia.stopTime();
 		},
 
+		//Function called in other functions, plays the wrong sound if answered incorrectly
 		playWrongSound: function() {
 			if(trivia.mute === false) {
 				document.getElementById("wrong").src = trivia.sounds[trivia.randomSound];
@@ -229,12 +242,14 @@ $(document).ready(function() {
 			}
 		},
 
+		//Function called in other functions, plays the correct sound if answered correctly
 		playCorrectSound: function() {
 			if(trivia.mute === false) {
 				document.getElementById("correct").play();
 			}
 		},
 
+		//Sets the music and sounds to be used
 		setMusic: function() {
 			var music = new Audio;
 			music.src = trivia.sounds[3];
@@ -254,6 +269,7 @@ $(document).ready(function() {
 			$("#soundEffect").append(correctSound);
 		},
 
+		//Pauses the music when clicking. The second click will play the music
 		muteMusic: function() {
 			if(trivia.mute === false) {
 				document.getElementById("music").pause();
@@ -267,6 +283,7 @@ $(document).ready(function() {
 			};
 		},
 
+		//starts the game music, this function is called when pressing the start button
 		startGameMusic: function() {
 			if(trivia.mute === false) {
 				document.getElementById("music").play();
@@ -274,6 +291,7 @@ $(document).ready(function() {
 			trivia.startMusic = true;
 		},
 
+		//This is for the round end screen in between each question, it shows the correct answer/image/fun fact
 		roundEndScreen: function(yourGuess) {
 			$("#question").empty();
 			$("#answers").empty();
@@ -303,6 +321,7 @@ $(document).ready(function() {
 			};
 		},
 
+		//when called, shows the screen for when the game has ended
 		endGameScreen: function() {
 			$("#timer").empty();
 			$("#question").empty();
@@ -319,6 +338,7 @@ $(document).ready(function() {
 			
 		},
 
+		//resets the game to the first question
 		resetGame: function() {
 			$("#startButton").hide();
 			$("#restartButton").hide();
